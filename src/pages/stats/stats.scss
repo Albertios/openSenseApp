@@ -1,0 +1,14 @@
+page-leaflet {
+
+    html, body, #map{
+        height: 90%;
+    }
+    #map{
+        height: 82.3vh;
+        width:100%;
+    }
+    
+.scroll-content {
+    overflow-y: auto !important;
+  }
+}

@@ -1,12 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-/*
-  Generated class for the ApiProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class ApiProvider {
 
@@ -18,6 +12,9 @@ export class ApiProvider {
     console.log('Hello ApiProvider Provider');
   }
 
+  setBoxId(boxId){
+    this.boxId = String(boxId);
+  }
 
   getData(){
     return this.http.get(`${this.API_URL} ${this.boxId}`);

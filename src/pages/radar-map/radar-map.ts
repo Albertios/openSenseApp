@@ -4,11 +4,6 @@ import leaflet from 'leaflet';
 import {HttpClient} from '@angular/common/http';
 import {ApiProvider} from '../../providers/api/api';
 
-
-
-
-
-
 @IonicPage()
 @Component({
   selector: 'page-radar-map',
@@ -32,19 +27,21 @@ export class RadarMapPage {
   }
 
   loadRainViewerMap() {
+
     //ToDo: setView to current marker
-    this.rainviewerMap = leaflet.map('rainviewerMap').setView([52, 7],5)
+    this.rainviewerMap = leaflet.map('rainviewerMap', {zoomControl: false}).setView([52, 7],5)
     let currentSenseBox = this.api.getData();
     console.log(currentSenseBox);
     currentSenseBox.toPromise().then( res => {
       console.log(res)
-      this.rainviewerMap.setView(res.currentLocation.coordinates, 5);
+      this.rainviewerMap.setView([res.currentLocation.coordinates[1], res.currentLocation.coordinates[0]], 5);
     })
 
     //get current date / time
     let sampleDate = new Date();
     // convert the date in hours
     let hours = sampleDate.getHours();
+
     // based on the time another basic map is displayed (light or dark)
     if (hours > 7 && hours < 18) {
       leaflet.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
@@ -52,6 +49,7 @@ export class RadarMapPage {
         maxZoom: 7
       }).addTo(this.rainviewerMap);
       this.setBounds();
+
       //this.loadOverLay();
     } else {
       leaflet.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
@@ -91,6 +89,7 @@ export class RadarMapPage {
     this.bounds = new leaflet.LatLngBounds(
       new leaflet.LatLng(-180.0, -180.0),
       new leaflet.LatLng(180.0, 180.0));
+
     // show boundaries
     //leaflet.rectangle(this.bounds).addTo(this.rainviewerMap);
     //this.rainviewerMap.fitBounds(this.bounds);
@@ -111,12 +110,12 @@ export class RadarMapPage {
             attribution: "<a href=\"http://www.rainviewer.com\" title=\"radar data from RainViewer\">RainViewer</a>"
           })
         );
-
       }
 
 
       //displays single layers one after the other
       //ToDo: for a better transition always two layers are displayed ==> The problem is, it's all blurry. How to get better transitions?
+
       setInterval(response => {
 
         //reset the framePosition back to 0 ==> we get an animation like GIF
@@ -126,6 +125,7 @@ export class RadarMapPage {
             this.rainviewerMap.removeLayer(this.overlays[this.framePosition - 2]);
             this.rainviewerMap.removeLayer(this.overlays[this.framePosition - 1]);
           }
+
           this.framePosition = 0;
           this.overlays[this.framePosition].addTo(this.rainviewerMap);
           this.framePosition += 1;
@@ -139,10 +139,6 @@ export class RadarMapPage {
           this.framePosition += 1;
         }
       }, 1000);
-
-
     });
   }
-
-
 }

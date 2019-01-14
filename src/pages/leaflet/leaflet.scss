@@ -11,4 +11,41 @@ page-leaflet {
 .scroll-content {
     overflow-y: auto !important;
   }
+
+  /* Compatible with Leaflet 0.7 */
+.leaflet-control-locate {
+    a {
+      font-size: 1.4em;
+      color: #444;
+      cursor: pointer;
+    }
+    &.active {
+      a {
+        color: #2074B6;
+      }
+      &.following a {
+        color: #FC8428;
+      }
+    }
+  }
+  
+  .leafet-control-locate-location circle {
+    animation: leaflet-control-locate-throb 4s ease infinite;
+  }
+  
+  @keyframes leaflet-control-locate-throb {
+      0% { r: 9; stroke-width: 1; }
+     50% { r: 7; stroke-width: 3; }
+    100% { r: 9; stroke-width: 1; }
+  }
+
+  //this is supposed to fix the icon, doesnt work
+//   .fa, .fa-map-marker, .leaflet-bar-part, .leaflet-bar-part-single{
+//     display: inline-block;
+//     width: 100%;
+//     text-align:center;
+//     align-content: center;
+//     align-items: center;
+//     align-self: center;
+//   }
 }

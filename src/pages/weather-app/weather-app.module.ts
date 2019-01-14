@@ -2,14 +2,16 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { WeatherAppPage } from './weather-app';
 import { LeafletPageModule } from '../leaflet/leaflet.module';
+import { StatsPageModule } from '../stats/stats.module';
 
 @NgModule({
   declarations: [
-    WeatherAppPage,
+    WeatherAppPage
   ],
   imports: [
     IonicPageModule.forChild(WeatherAppPage),
-    LeafletPageModule
+    LeafletPageModule,
+    StatsPageModule
   ],
 })
 export class WeatherAppPageModule {}
