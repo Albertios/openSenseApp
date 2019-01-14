@@ -29,10 +29,22 @@
         <ion-icon name="rainy"></ion-icon>
         <img src="assets/imgs/logo.png" />
       </ion-item>
+      
     </ion-card-content>
-
     <ion-item>
-      <button ion-button > <ion-icon name="share"></ion-icon> </button>
+      <ion-input [(ngModel)]="message" placeholder = "enter message"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-input [(ngModel)]="file" placeholder = "enter message"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-input [(ngModel)]="link" placeholder = "enter message"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-input [(ngModel)]="subject" placeholder = "enter message"></ion-input>
+      </ion-item>
+    <ion-item>
+      <button ion-button full click (click) ="share()">share</button>
     </ion-item>
   </ion-card>
 
@@ -56,9 +68,6 @@
       <ion-icon name="sunny"></ion-icon>
       Illumination
     </ion-item>
+    
   </ion-list>
-  
-
-
-
 </ion-content>

@@ -15,6 +15,8 @@ import {Http} from '@angular/http';
 import{HttpModule} from '@angular/http';
 
 import {IonicStorageModule} from '@ionic/storage';
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 
 
 
@@ -50,7 +52,8 @@ import {IonicStorageModule} from '@ionic/storage';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
     WeatherProvider,
-    IonicStorageModule
+    IonicStorageModule,
+    SocialSharing
     
   ]
 

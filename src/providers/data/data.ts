@@ -11,27 +11,20 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class DataProvider {
   lists: any = [
-    {itemName: 'APP',
+   
+    {itemName: 'DESCRIPTION',
     
-    size: 'weather app',
-
-
-  
-  },
-    {itemName: 'VERSION',
+    size:'This weather app is the mobile application supporting the major iphone and android platform. Equipped with location based technology to detect user locality, the application can automatically display the latest weather forecast for cities. The weather app get the weather data from sense box.The app automatically changes based on your location and provides current weather plus hourly weather forecasts up to two days in advance.',
     
-    size: '1.0.0'
-       
-  },
-    {itemName: ' DESCRIPTION',
-    
-    size: 'This weather app is the mobile application supportig the major iphone and android platform. Equipped with location based technology to detect user locality, the application can automatically display the latest weather forecast for cities '
-  
     
   },
     {itemName: 'FAQ',
    
-    size: ' how do I manage my notifications?'
+    size:' how do I manage my notifications?',
+    
+    
+    
+    
     
   },
   ];

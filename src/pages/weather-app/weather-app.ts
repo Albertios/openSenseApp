@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 /**
  * Generated class for the WeatherAppPage page.
@@ -15,12 +16,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class WeatherAppPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  message: string = null;
+  file:string = null;
+  link:string = null;
+  subject:string = null;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,private socialSharing: SocialSharing) {
+  }
+
+  share(){
+    this.socialSharing.share(this.message,this.file,this.link,this.subject)
+    .then(()=>{
+
+    }).catch(()=>{
+
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WeatherAppPage');
   }
+
+
 
   refresh_click(){
     console.log('Refresh was clicked');
