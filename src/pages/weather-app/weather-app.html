@@ -38,7 +38,7 @@
 
   </ion-card>
 
-  <div *ngIf="boxData">
+  <div *ngIf="boxData; else elseBlock">
     <ion-list>
       <div ion-item *ngFor="let sensor of boxData.sensors">
         <h2>{{sensor.title}}</h2>
@@ -46,4 +46,15 @@
       </div>
     </ion-list>
   </div>
+
+    <!-- This block should be executed if no weather data is provided by the SenseBox
+        Weather data is searched for using weather-app.ts: getReplacementData
+        replacementData is provided in variable weather and can be used as:
+
+        <ion-item>
+            <strong> temp:</strong> {{weather.list["0"].main.temp}}
+          </ion-item>
+
+    -->
+
 </ion-content>

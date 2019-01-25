@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-an
 import { LeafletPage } from '../leaflet/leaflet';
 import { RadarMapPage } from '../radar-map/radar-map';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { WeatherProvider } from '../../providers/api/weather';
 
 @IonicPage()
 @Component({
@@ -14,12 +15,14 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 export class WeatherAppPage {
   boxData: any;
 
+  weather: any;
+
   message: string = null;
   file: string = null;
   link: string = null;
   subject: string = null;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private api: ApiProvider, private socialSharing: SocialSharing) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private api: ApiProvider, private socialSharing: SocialSharing, public WeatherProvider: WeatherProvider) {
   }
 
   share() {
@@ -80,6 +83,7 @@ export class WeatherAppPage {
     });
   }
 
+
   buildTimeStamp(){
     let time_data = (this.boxData.updatedAt);
     let split_data = time_data.split("T");
@@ -94,8 +98,16 @@ export class WeatherAppPage {
     let box_time = split_data[1];
     box_time = box_time.split(".");
     box_time = box_time[0];
-    
+
     this.boxData.date = box_date;
     this.boxData.time = box_time;
   }
+
+  getReplacementData(boxData){
+    this.WeatherProvider.getWeatherCoords(boxData.currentLocation.coordinates[0], 
+      boxData.currentLocation.coordinates[1]).subscribe(weather => {
+      this.weather = weather;
+    })
+  }
+  
 }
