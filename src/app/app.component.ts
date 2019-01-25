@@ -3,9 +3,6 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-
-import { LandingPage } from '../pages/landing-page/landing-page';
-
 import { IntroductionPage } from '../pages/introduction/introduction';
 
 import { HomePage } from '../pages/home/home';
@@ -17,23 +14,19 @@ export class openSenseApp {
 
   @ViewChild(Nav) nav: Nav;
 
-
-  landingPage: any = LandingPage;
   rootPage:any = IntroductionPage;
   rootHome:any = HomePage;
 
 
   pages: Array<{ title: string, component: any }> = [
 
-    { title: 'WeatherApp', component: LandingPage },
+    { title: 'WeatherApp', component: 'WeatherAppPage' },
   ];
   weatherPages: Array<{ title: string, component: any }> = [
-    { title:'Home', component: LandingPage},
-    { title: 'WeatherApp', component: 'WeatherAppPage' },
+    { title:'Home', component: "WeatherAppPage"},
     { title: 'Forecast', component: 'ForecastPage' },
     { title: 'Analytics', component: 'GraphsPage' },
     { title: 'About', component: 'AboutPage' },
-    { title: 'Settings', component: 'SettingsPage' },
     //{ title: 'Introduction', component:'IntroductionPage'},
     { title: 'Back', component: HomePage },
 
@@ -55,7 +48,7 @@ export class openSenseApp {
     this.nav.setRoot(page.component);
 
     if (page.component === "WeatherAppPage" || page.component === "ForecastPage" || page.component === "GraphsPage"
-      || page.component === "AboutPage" || page.component === "SettingsPage" || page.component==LandingPage /*|| page.component==="IntroductionPage"*/) {
+      || page.component === "AboutPage" /*|| page.component==="IntroductionPage"*/) {
       document.getElementById('homeNavList').hidden = true;
       document.getElementById('navList').hidden = false;
 

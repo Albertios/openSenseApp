@@ -3,8 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <!--<ion-title *ngIf="boxData">{{boxData.name}}</ion-title>-->
-    <ion-title>WeatherBox</ion-title>
+    <ion-title>Home</ion-title>
 
     <ion-buttons end>
       <button ion-button icon-only>
@@ -24,38 +23,22 @@
 
 <ion-content class="card-background-page">
   <ion-card *ngIf="boxData">
+
     <img src="../../assets/imgs/raisingSun.jpg"/>
-    <div class="card-title">{{boxData.name}}</div>
-    <!--    <div class="card-subtitle"  *ngFor="let sensor of boxData.sensors" >
-          <p>{{sensor.lastMeasurement.value}}}</p></div>-->
-
-
+    
+    <div class="card-title">{{boxData.name}} 
+      <br>
+      {{boxData.date}}
+      <br>
+      {{boxData.time}}
+    </div>
     <ion-refresher (ionRefresh)="doRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
 
-
   </ion-card>
-  <!-- harini
 
-    <ion-item>
-      <ion-input [(ngModel)]="message" placeholder="enter message"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input [(ngModel)]="file" placeholder="enter message"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input [(ngModel)]="link" placeholder="enter message"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input [(ngModel)]="subject" placeholder="enter message"></ion-input>
-    </ion-item>
-    <ion-item>
-      <button ion-button full click (click)="share()">share</button> </ion-item>
-  </ion-card>
--->
-
-  <div *ngIf="boxData">
+  <div *ngIf="boxData; else elseBlock">
     <ion-list>
       <div ion-item *ngFor="let sensor of boxData.sensors">
         <h2>{{sensor.title}}</h2>
@@ -63,4 +46,15 @@
       </div>
     </ion-list>
   </div>
+
+    <!-- This block should be executed if no weather data is provided by the SenseBox
+        Weather data is searched for using weather-app.ts: getReplacementData
+        replacementData is provided in variable weather and can be used as:
+
+        <ion-item>
+            <strong> temp:</strong> {{weather.list["0"].main.temp}}
+          </ion-item>
+
+    -->
+
 </ion-content>

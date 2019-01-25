@@ -28,7 +28,6 @@
     }
 }
 
-// Harini Push -----
 .tab-md, .tab-button-icon{
     color: #ccc;
 }  
@@ -38,4 +37,7 @@
     margin-bottom: 10px;
     font-size: 2rem;
  } 
- // -------
+
+ .leaflet-control-locate a {
+    padding: 0 0 0 0;
+}

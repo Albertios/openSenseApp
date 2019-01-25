@@ -4,22 +4,26 @@ import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-an
 import { LeafletPage } from '../leaflet/leaflet';
 import { RadarMapPage } from '../radar-map/radar-map';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { WeatherProvider } from '../../providers/api/weather';
 
 @IonicPage()
 @Component({
   selector: 'page-weather-app',
   templateUrl: 'weather-app.html',
+  providers:[WeatherProvider]
 })
 
 export class WeatherAppPage {
   boxData: any;
+
+  weather: any;
 
   message: string = null;
   file: string = null;
   link: string = null;
   subject: string = null;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private api: ApiProvider, private socialSharing: SocialSharing) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private api: ApiProvider, private socialSharing: SocialSharing, public WeatherProvider: WeatherProvider) {
   }
 
   share() {
@@ -52,24 +56,25 @@ export class WeatherAppPage {
   }
 
 
-refresh_data(){
-  this.api.getSenseboxData().subscribe(res => {
-    console.log(res);
-    this.boxData = res;
-  console.log('refresh_data()');
-  })
-}
+  refresh_data() {
+    this.api.getSenseboxData().subscribe(res => {
+      console.log(res);
+      this.boxData = res;
+      console.log('refresh_data()');
+      this.buildTimeStamp();
+    })
+  }
 
 
-    presentPopover(myEvent){
-      let popover = this.popoverCtrl.create(LeafletPage, {}, {cssClass: 'custom_popover'});
-      popover.present({
-        ev: myEvent
-      });
-      popover.onDidDismiss(() =>{
-        this.refresh_data();
-      })
-    }
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(LeafletPage, {}, { cssClass: 'custom_popover' });
+    popover.present({
+      ev: myEvent
+    });
+    popover.onDidDismiss(() => {
+      this.refresh_data();
+    })
+  }
 
 
   presentPopoverRadarMap(myEvent) {
@@ -78,4 +83,32 @@ refresh_data(){
       ev: myEvent
     });
   }
+
+
+  buildTimeStamp(){
+    let time_data = (this.boxData.updatedAt);
+    let split_data = time_data.split("T");
+
+    let box_date = split_data[0];
+    box_date = box_date.replace("-", ".");
+    box_date = box_date.replace("-", ".");
+    box_date = box_date.split(".");
+    box_date = box_date[2].concat(".".concat(box_date[1].concat(".".concat((box_date[0])))));
+
+
+    let box_time = split_data[1];
+    box_time = box_time.split(".");
+    box_time = box_time[0];
+
+    this.boxData.date = box_date;
+    this.boxData.time = box_time;
+  }
+
+  getReplacementData(boxData){
+    this.WeatherProvider.getWeatherCoords(boxData.currentLocation.coordinates[0], 
+      boxData.currentLocation.coordinates[1]).subscribe(weather => {
+      this.weather = weather;
+    })
+  }
+  
 }
