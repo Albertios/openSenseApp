@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, PopoverController, AlertController} from 'ionic-angular';
-import {ApiProvider} from '../../providers/api/api';
-import {LeafletPage} from '../leaflet/leaflet';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, PopoverController, AlertController } from 'ionic-angular';
+import { ApiProvider } from '../../providers/api/api';
+import { LeafletPage } from '../leaflet/leaflet';
 import Chart from 'chart.js/dist/Chart.js';
 
 /**
@@ -23,6 +23,7 @@ export class GraphsPage {
   unit: any;
   chartData: any = [];
   box: boolean;
+  boxData: any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: ApiProvider, public popoverCtrl: PopoverController, private alertCtrl: AlertController) {
@@ -30,11 +31,12 @@ export class GraphsPage {
 
   ionViewDidLoad() {
     this.loadSensorDropDown();
+    this.refresh_data();
   }
 
   //leaflet popover for changing sensebox for graphs
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(LeafletPage, {}, {cssClass: 'custom_popover'});
+    let popover = this.popoverCtrl.create(LeafletPage, {}, { cssClass: 'custom_popover' });
     popover.present({
       ev: myEvent
     });
@@ -54,23 +56,23 @@ export class GraphsPage {
     })
   }
 
-  checkForSenseboxData(){
-    if(this.box){ //check if this works!!
-      if (this.api.getGraphBoxId() === ''){
+  checkForSenseboxData() {
+    if (this.box) { //check if this works!!
+      if (this.api.getGraphBoxId() === '') {
         let alert = this.alertCtrl.create({
           title: 'No Box selected',
           subTitle: 'Please select a box on the map to be able to compare the data as graph ',
           buttons: ['Dismiss']
         });
         alert.present();
-        this.box=false;
+        this.box = false;
         return;
       }
       this.addSenseboxDataToChart()
     } else {
       if (this.api.getGraphBoxId() != '') {
         this.loadSensorDropDown();
-        if(this.sensorChart.data.datasets.length >1){
+        if (this.sensorChart.data.datasets.length > 1) {
           this.sensorChart.data.datasets.pop();
           this.sensorChart.update();
         }
@@ -242,5 +244,13 @@ export class GraphsPage {
       maxValue = -200;
     });
     return chartData;
+  }
+
+  refresh_data() {
+    this.api.getSenseboxData().subscribe(res => {
+      console.log(res);
+      this.boxData = res;
+      console.log('refresh_data()');
+    })
   }
 }

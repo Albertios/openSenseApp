@@ -52,24 +52,25 @@ export class WeatherAppPage {
   }
 
 
-refresh_data(){
-  this.api.getSenseboxData().subscribe(res => {
-    console.log(res);
-    this.boxData = res;
-  console.log('refresh_data()');
-  })
-}
+  refresh_data() {
+    this.api.getSenseboxData().subscribe(res => {
+      console.log(res);
+      this.boxData = res;
+      console.log('refresh_data()');
+      this.buildTimeStamp();
+    })
+  }
 
 
-    presentPopover(myEvent){
-      let popover = this.popoverCtrl.create(LeafletPage, {}, {cssClass: 'custom_popover'});
-      popover.present({
-        ev: myEvent
-      });
-      popover.onDidDismiss(() =>{
-        this.refresh_data();
-      })
-    }
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(LeafletPage, {}, { cssClass: 'custom_popover' });
+    popover.present({
+      ev: myEvent
+    });
+    popover.onDidDismiss(() => {
+      this.refresh_data();
+    })
+  }
 
 
   presentPopoverRadarMap(myEvent) {
@@ -77,5 +78,24 @@ refresh_data(){
     popover.present({
       ev: myEvent
     });
+  }
+
+  buildTimeStamp(){
+    let time_data = (this.boxData.updatedAt);
+    let split_data = time_data.split("T");
+
+    let box_date = split_data[0];
+    box_date = box_date.replace("-", ".");
+    box_date = box_date.replace("-", ".");
+    box_date = box_date.split(".");
+    box_date = box_date[2].concat(".".concat(box_date[1].concat(".".concat((box_date[0])))));
+
+
+    let box_time = split_data[1];
+    box_time = box_time.split(".");
+    box_time = box_time[0];
+    
+    this.boxData.date = box_date;
+    this.boxData.time = box_time;
   }
 }

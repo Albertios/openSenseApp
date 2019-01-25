@@ -3,10 +3,21 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>
-      <ion-icon name="analytics"></ion-icon>
-      Analytics
-    </ion-title>
+
+    <div *ngIf="boxData; else elseBlock">
+      <ion-title>
+        <ion-icon name="analytics"></ion-icon>
+        Analytics: {{boxData.name}}
+      </ion-title>
+    </div>
+
+    <ng-template #elseBlock>
+      <ion-title>
+        <ion-icon name="analytics"></ion-icon>
+        Analytics
+      </ion-title>
+    </ng-template>
+
     <ion-buttons end>
       <button ion-button (click)="presentPopover($event)" icon-only>
         <ion-icon name="locate"></ion-icon>
