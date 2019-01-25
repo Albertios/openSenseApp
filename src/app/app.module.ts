@@ -14,8 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { LeafletPage } from '../pages/leaflet/leaflet';
 import { LeafletPageModule } from '../pages/leaflet/leaflet.module';
 
-import { LandingPage } from '../pages/landing-page/landing-page'
-import { LandingPageModule } from '../pages/landing-page/landing-page.module';
 import { RadarMapPage} from "../pages/radar-map/radar-map";
 import { RadarMapPageModule} from "../pages/radar-map/radar-map.module";
 
@@ -43,12 +41,7 @@ import {IntroductionPage} from "../pages/introduction/introduction";
     LeafletPageModule,
     RadarMapPageModule,
     IntroductionPageModule,
-
-
     HttpModule,
-
-    LandingPageModule,
-
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -56,9 +49,7 @@ import {IntroductionPage} from "../pages/introduction/introduction";
     HomePage,
     LeafletPage,
     RadarMapPage,
-    LandingPage,
     IntroductionPage,
-
   ],
   providers: [
     StatusBar,

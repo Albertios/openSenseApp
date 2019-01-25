@@ -10,6 +10,7 @@ import { WeatherProvider } from '../../providers/api/weather';
 @Component({
   selector: 'page-weather-app',
   templateUrl: 'weather-app.html',
+  providers:[WeatherProvider]
 })
 
 export class WeatherAppPage {
