@@ -23,5 +23,10 @@ export class WeatherProvider {
     return this.http.get(this.url + city + ',' + code +'&APPID='+ this.apiKey).map(res =>
       res.json());
   }
+
+  getWeatherCoords(lat, lon){
+    return this.http.get(this.url + "lat=" + lat + ',' + "lon=" + lon+'&APPID='+ this.apiKey).map(res =>
+      res.json());
+  }
 }
 
