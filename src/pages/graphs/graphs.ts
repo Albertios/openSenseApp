@@ -187,6 +187,9 @@ export class GraphsPage {
         maintainAspectRatio: false,
         scales: {
           yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: this.unit},
             stacked: true,
             gridLines: {
               display: true,
