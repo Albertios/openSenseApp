@@ -6,22 +6,21 @@ var cors = require('cors');
  
 var app = express();
 app.use(logger('dev'));
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(cors());
  
+app.post('/forecast', function(req, res){
 
-app.get('/forecast', function(req, res){
- 
-    //////////
     var list = []
     
-
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
     var yyyy = today.getFullYear();
     var fromDay = dd, toDay = dd , fromMonth = mm, toMonth = mm, fromYear = yyyy, toYear= yyyy;
+    var firstD, secondD, thirdD, fourthD, fifth;
     if(dd == 1){
         if(mm==1){
             toDay == 31;
@@ -56,6 +55,18 @@ app.get('/forecast', function(req, res){
         fromMonth = mm-1;
     }
 
+    // if(mm==1 && dd>=28){
+    //     if(dd==28)
+    //     {
+    //         firstD = 28;secondD=29; thirdD = 30; fourthD=31, fifth=1;
+    //         mm=
+
+    //     }else if(dd==29){
+
+    //     }
+
+    // }
+
     //add '0' in case month or/and day value is less than 10
     if(toDay<10) {
         toDay = '0' + toDay;
@@ -69,25 +80,40 @@ app.get('/forecast', function(req, res){
     if(toMonth<10) {
         toMonth = '0' + toMonth;
     }
+
     //var t = new Date();
     // list.push(String(t.setDate(today.getDate()+1)))
     // list.push(String(today.add(1).day()))
-    list.push("Morning")
-    list.push("Noon")
-    list.push("Afternoon")
-    list.push(String(dd)+"/"+String(toMonth)+"/"+String(yyyy%100)+"\t (Today)")
-    list.push(String(dd+1)+"/"+String(toMonth)+"/"+String(yyyy%100))
-    list.push(String(dd+2)+"/"+String(toMonth)+"/"+String(yyyy%100))
-    list.push(String(dd+3)+"/"+String(toMonth)+"/"+String(yyyy%100))
-    list.push(String(dd+4)+"/"+String(toMonth)+"/"+String(yyyy%100))
+    list.push('\xa0\xa0'+" 09:00")
+    list.push('\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0'+"  12:00")
+    list.push('\xa0\xa0\xa0\xa0\xa0\xa0\xa0' +"15:00")
+    if(dd == "28"){
+        list.push(String("28")+"/"+String(toMonth)+"/"+String(yyyy%100)+"\t (Today)")
+        list.push(String("29")+"/"+String(toMonth)+"/"+String(yyyy%100))
+        list.push(String("30")+"/"+String(toMonth)+"/"+String(yyyy%100))
+        list.push(String("31")+"/"+String(toMonth)+"/"+String(yyyy%100))
+        list.push(String("01")+"/"+String("02")+"/"+String(yyyy%100))
+    }else if (dd =="29"){
+        list.push(String("29")+"/"+String(toMonth)+"/"+String(yyyy%100)+"\t (Today)")
+        list.push(String("30")+"/"+String(toMonth)+"/"+String(yyyy%100))
+        list.push(String("31")+"/"+String(toMonth)+"/"+String(yyyy%100))
+        list.push(String("01")+"/"+String("02")+"/"+String(yyyy%100))
+        list.push(String("02")+"/"+String("02")+"/"+String(yyyy%100))
+    }else{
+        list.push(String(dd)+"/"+String(toMonth)+"/"+String(yyyy%100)+"\t (Today)")
+        list.push(String(dd+1)+"/"+String(toMonth)+"/"+String(yyyy%100))
+        list.push(String(dd+2)+"/"+String(toMonth)+"/"+String(yyyy%100))
+        list.push(String(dd+3)+"/"+String(toMonth)+"/"+String(yyyy%100))
+        list.push(String(dd+4)+"/"+String(toMonth)+"/"+String(yyyy%100))
+    }
 
     // console.log(String(fromDay)+"3333-"+String(fromMonth)+"-"+String(fromYear))
     // console.log(String(toDay)+"-"+String(toMonth)+"-"+String(toYear))
 
     var request = require("request")
-    //new station near museum
+    //Westfälisches Pferdemuseum Münster station
     //var url = "https://api.opensensemap.org/statistics/descriptive?boxid=5837219353fb45000f9478b0&&phenomenon=Temperatur&from-date=2018-12-21T00:01:01.930Z&to-date=2019-01-21T22:59:59.930Z&download=true&format=json&window=3600000&operation=arithmeticMean"
-    var url = "https://api.opensensemap.org/statistics/descriptive?boxid=5837219353fb45000f9478b0&&phenomenon=Temperatur&from-date="+String(fromYear)+"-"+String(fromMonth)+"-"+String(fromDay)+"T00:01:01.930Z&to-date="+String(toYear)+"-"+String(toMonth)+"-"+String(toDay)+"T22:59:59.930Z&download=true&format=json&window=3600000&operation=arithmeticMean"
+    var url = "https://api.opensensemap.org/statistics/descriptive?boxid="+req.body.BoxId+"&&phenomenon=Temperatur&from-date="+String(fromYear)+"-"+String(fromMonth)+"-"+String(fromDay)+"T00:01:01.930Z&to-date="+String(toYear)+"-"+String(toMonth)+"-"+String(toDay)+"T22:59:59.930Z&download=true&format=json&window=3600000&operation=arithmeticMean"
     //cyper station
     //var url = "https://api.opensensemap.org/statistics/descriptive?boxid=593bcd656ccf3b0011791f5a&&phenomenon=Temperatur&from-date=2018-12-21T00:01:01.930Z&to-date=2019-01-21T22:59:59.930Z&download=true&format=json&window=3600000&operation=arithmeticMean"
     //var url = "https://api.opensensemap.org/statistics/descriptive?boxid=593bcd656ccf3b0011791f5a&&phenomenon=Temperatur&from-date="+String(fromYear)+"-"+String(fromMonth)+"-"+String(fromDay)+"T00:01:01.930Z&to-date="+String(toYear)+"-"+String(toMonth)+"-"+String(toDay)+"T22:59:59.930Z&download=true&format=json&window=3600000&operation=arithmeticMean"
@@ -120,6 +146,6 @@ app.get('/forecast', function(req, res){
             });
         }
     })
-});
+}); 
  
-app.listen(process.env.PORT || 8080);
+app.listen(8080);

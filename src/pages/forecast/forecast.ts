@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import { map } from 'rxjs/operators';
-// import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import {ApiProvider} from '../../providers/api/api';
 
@@ -22,23 +22,27 @@ export class ForecastPage {
   name: string;
   item: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, private api: ApiProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private api: ApiProvider) {
     console.log('Hello ApiProvider Provider');
     console.log("Yousef the id you are looking for: "+this.api.getBoxId());
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ForecastPage');
-    this.checkName();
+    //this.checkName();
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json')
 
-  }
+    let body = {
+      BoxId: this.api.getBoxId()
+    };
 
-  checkName() {
-
-      this.http.get('http://localhost:8080/forecast').subscribe(response => {
-          console.log('GET Response:', response);
-          this.item = response;
-      });
-
+    this.http.post('http://localhost:8080/forecast/', JSON.stringify(body), {headers: headers})
+    .map(res => res.json())
+    .subscribe(data => {
+      this.item = data;
+      //console.log((this.item))
+      //console.log(Object.keys(this.item).length);
+    });
   }
 }

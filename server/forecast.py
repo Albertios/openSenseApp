@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sys, json
 from statsmodels.tsa.arima_model import ARIMA
 import numpy as np 
@@ -14,6 +15,7 @@ def predict(coef, history):
 
 def main():
 
+	#print("1111")
 	lines = read_in()
 
    # Sum  of all the items in the providen array
@@ -52,7 +54,7 @@ def main():
 			predictions.append(yhat)
 			obs = yhat
 			history.append(obs)
-			print('>predicted=%.3f' % (yhat))
+			print('>predicted=%.3f °C' % (yhat))
 		i=i+1
 
 

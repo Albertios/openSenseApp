@@ -6,7 +6,7 @@ export class ApiProvider {
 
   private API_URL = 'https://api.opensensemap.org/boxes';
   private exposure = '?exposure=outdoor';
-  private boxId = '593bcd656ccf3b0011791f5a';
+  private boxId = '5837219353fb45000f9478b0'; //Westfälisches Pferdemuseum Münster (station)
   private graphBoxId = '';
   // private sensorId = '593bcd656ccf3b0011791f5b';
   // private sat24Location = 'DE'; // https://en.sat24.com/en/freeimages
