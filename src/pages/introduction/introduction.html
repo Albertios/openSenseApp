@@ -1,10 +1,15 @@
 <ion-header>
   <ion-navbar>
+    
     <ion-title>WeatherBox</ion-title>
+  
   </ion-navbar>
 </ion-header>
+
 <ion-content>
+
   <ion-slides pager (ionSlideDidChange)="slideChanged()" (ionSlideDrag)="slideMoved()">
+    
     <ion-slide>
       <div class="diag" style="background: url('assets/imgs/whitebg.svg') no-repeat">
         <ion-icon class="iconIntroduction" name="locate" color="primary"></ion-icon>
@@ -14,6 +19,7 @@
         <p class="paragraph">Find the sensebox you're looking for or select the closest one.</p>
       </div>
     </ion-slide>
+
     <ion-slide>
       <div class="diag" style="background: url('assets/imgs/whitebg.svg') no-repeat">
         <ion-icon class="iconIntroduction" name="umbrella" color="primary"></ion-icon>
@@ -33,6 +39,7 @@
         <p class="paragraph">Future weather prediction. </p>
       </div>
     </ion-slide>
+
     <ion-slide>
       <div class="diag" style="background: url('assets/imgs/whitebg.svg') no-repeat">
         <ion-icon class="iconIntroduction" ios="ios-analytics" md="md-analytics" color="primary"></ion-icon>
@@ -42,6 +49,7 @@
         <p class="paragraph">Look at the change over the last few days.</p>
       </div>
     </ion-slide>
+
     <ion-slide>
       <div class="diag" style="background: url('../assets/imgs/whitebg.svg') no-repeat">
         <ion-icon class="iconIntroduction" name="information-circle" color="primary"></ion-icon>
@@ -51,6 +59,7 @@
         <p class="paragraph">All about the app and frequently asked questions.</p>
       </div>
     </ion-slide>
+
     <ion-slide>
       <div class="diag" style="background: url('../assets/imgs/whitebg.svg') no-repeat">
         <br><br>
@@ -63,6 +72,7 @@
           Black: Closest Box</p>
       </div>
     </ion-slide>
+
     <ion-slide>
       <div class="diag" style="background: url('../assets/imgs/whitebg.svg') no-repeat">
         <br>
@@ -73,6 +83,9 @@
         <p class="paragraph">Thank you for choosing us. Enjoy the app.</p>
       </div>
     </ion-slide>
+
   </ion-slides>
+
   <button (click)="skip()" id="skip">{{ skipMsg }}</button>
+
 </ion-content>

@@ -1,6 +1,6 @@
 page-radar-map {
-
-  html, body {
+  html,
+  body {
     padding: 0;
     margin: 0;
   }
@@ -13,10 +13,12 @@ page-radar-map {
   .scroll-content {
     overflow-y: auto !important;
   }
+
   .legend {
     line-height: 18px;
   }
-  .legend i{
+
+  .legend i {
     width: 18px;
     height: 18px;
     float: left;
@@ -35,10 +37,11 @@ page-radar-map {
   }
 
   //time-dependent selection (legend text color)
-  divDay{
+  divDay {
     color: #000;
   }
-  divNight{
+  
+  divNight {
     color: white;
   }
 }

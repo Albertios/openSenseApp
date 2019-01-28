@@ -1,10 +1,8 @@
-// created by albertios on 12/2018
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HttpClient } from '@angular/common/http';
+import { ApiProvider } from '../../providers/api/api';
 import leaflet from 'leaflet';
-import {HttpClient} from '@angular/common/http';
-import {ApiProvider} from '../../providers/api/api';
-
 
 @IonicPage()
 @Component({
@@ -41,7 +39,7 @@ export class RadarMapPage {
         iconUrl: '../assets/imgs/markerBlue.png'
       });
       this.rainviewerMap.setView([res.currentLocation.coordinates[1], res.currentLocation.coordinates[0]], 5);
-      let marker = new leaflet.marker([res.currentLocation.coordinates[1], res.currentLocation.coordinates[0]], {icon: senseBoxIcon});
+      let marker = new leaflet.marker([res.currentLocation.coordinates[1], res.currentLocation.coordinates[0]], { icon: senseBoxIcon });
       marker.addTo(this.rainviewerMap);
     });
 
@@ -73,7 +71,7 @@ export class RadarMapPage {
     this.getRemoteData();
 
     //create the legend (color bricks and description)
-    let legend = leaflet.control({position: 'bottomleft'});
+    let legend = leaflet.control({ position: 'bottomleft' });
     legend.onAdd = function () {
 
       //set legend values (color and description)
@@ -114,64 +112,60 @@ export class RadarMapPage {
   getRemoteData() {
     this.http.get('https://tilecache.rainviewer.com/api/maps.json')
       .toPromise().then(response => {
-      this.timeArray = response;
+        this.timeArray = response;
 
-      //creates 13 ImageOverlay and saved them in an array
-      for (let i = 0; i < this.timeArray.length; i++) {
-        this.overlays.push(
-          new leaflet.ImageOverlay("https://tilecache.rainviewer.com/v2/composite/" + this.timeArray[i] + "/8000.png?color=2", this.bounds, {
-            opacity: 0.5,
-            interactive: true,
-            attribution: "<a href=\"http://www.rainviewer.com\" title=\"radar data from RainViewer\">RainViewer</a>"
-          })
-        );
-      }
-
-      let timeLegend = leaflet.control({position: 'bottomleft'});
-      //displays single layers one after the another
-      //ToDo: for a better transition always two layers are displayed ==> The problem is, it's a little bit blurry. How to get better transitions?
-      setInterval(response => {
-
-        //reset the framePosition back to 0 ==> we get an animation like GIF
-        if (this.framePosition === this.timeArray.length) {
-          // remove image layer if it already exists
-          if (this.rainviewerMap.hasLayer(this.overlays[this.framePosition - 2])) {
-            this.rainviewerMap.removeLayer(this.overlays[this.framePosition - 2]);
-            this.rainviewerMap.removeLayer(this.overlays[this.framePosition - 1]);
-          }
-          //reset framePosition ==> starts with the first layer
-          this.framePosition = 0;
-          this.overlays[this.framePosition].addTo(this.rainviewerMap);
-          this.framePosition += 1;
-
-        } else {
-          // remove image layer if it already exists
-          if (this.rainviewerMap.hasLayer(this.overlays[this.framePosition - 2])) {
-            this.rainviewerMap.removeLayer(this.overlays[this.framePosition - 2]);
-          }
-          this.overlays[this.framePosition].addTo(this.rainviewerMap);
-
-          //convert Unix_timestamp JSON String into hours and minutes
-          let displayedTime = this.Unix_timestamp(this.timeArray[this.framePosition]);
-          //a small black time div box will created and will be shown over the map legend
-          timeLegend.onAdd = function () {
-
-            let div = leaflet.DomUtil.create('div', 'info legend');
-
-            div.innerHTML +=
-              '<i id="time" style="background:' + 'black' + '">' + displayedTime + '</i>';
-
-            return div;
-          };
-
-          timeLegend.addTo(this.rainviewerMap);
-          this.framePosition += 1;
+        //creates 13 ImageOverlay and saved them in an array
+        for (let i = 0; i < this.timeArray.length; i++) {
+          this.overlays.push(
+            new leaflet.ImageOverlay("https://tilecache.rainviewer.com/v2/composite/" + this.timeArray[i] + "/8000.png?color=2", this.bounds, {
+              opacity: 0.5,
+              interactive: true,
+              attribution: "<a href=\"http://www.rainviewer.com\" title=\"radar data from RainViewer\">RainViewer</a>"
+            })
+          );
         }
-      }, 1000);
 
+        let timeLegend = leaflet.control({ position: 'bottomleft' });
+        //displays single layers one after the another
+        //ToDo: for a better transition always two layers are displayed ==> The problem is, it's a little bit blurry. How to get better transitions?
+        setInterval(response => {
 
-    });
+          //reset the framePosition back to 0 ==> we get an animation like GIF
+          if (this.framePosition === this.timeArray.length) {
+            // remove image layer if it already exists
+            if (this.rainviewerMap.hasLayer(this.overlays[this.framePosition - 2])) {
+              this.rainviewerMap.removeLayer(this.overlays[this.framePosition - 2]);
+              this.rainviewerMap.removeLayer(this.overlays[this.framePosition - 1]);
+            }
+            //reset framePosition ==> starts with the first layer
+            this.framePosition = 0;
+            this.overlays[this.framePosition].addTo(this.rainviewerMap);
+            this.framePosition += 1;
+
+          } else {
+            // remove image layer if it already exists
+            if (this.rainviewerMap.hasLayer(this.overlays[this.framePosition - 2])) {
+              this.rainviewerMap.removeLayer(this.overlays[this.framePosition - 2]);
+            }
+            this.overlays[this.framePosition].addTo(this.rainviewerMap);
+
+            //convert Unix_timestamp JSON String into hours and minutes
+            let displayedTime = this.Unix_timestamp(this.timeArray[this.framePosition]);
+            //a small black time div box will created and will be shown over the map legend
+            timeLegend.onAdd = function () {
+
+              let div = leaflet.DomUtil.create('div', 'info legend');
+
+              div.innerHTML +=
+                '<i id="time" style="background:' + 'black' + '">' + displayedTime + '</i>';
+
+              return div;
+            };
+
+            timeLegend.addTo(this.rainviewerMap);
+            this.framePosition += 1;
+          }
+        }, 1000);
+      });
   }
-
-
 }
