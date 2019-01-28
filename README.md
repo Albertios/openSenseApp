@@ -28,6 +28,8 @@ This app was built during the Winterterm 2018/2019 for the studyproject 'SIL: Ap
     - npm install
     - ionic serve
     
+<br>
+    
 ### Further Information:
 - [<b>re:</b>edu](https://reedu.de/)
 - [ifgi](https://www.uni-muenster.de/Geoinformatics/)
