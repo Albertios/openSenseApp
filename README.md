@@ -1,10 +1,22 @@
-### openSenseApp starter
+# WeatherBox
 
-- This IONIC 3 project was generated with IONIC CLI
-    - https://ionicframework.com/docs/cli/
-- please fork this repository to develop your apps
+WeatherBox is a modern, responsive weather app, providing you with the most local of weather data and the tools to analyse it.
+This app was built during the Winterterm 2018/2019 for the studyproject 'SIL: App Development for the OpenSenseMap'.
+<br>
+<br>
 
-### Prequesites:-
+## Features:
+
+- Local weather data from Sensboxes
+- Weather data from all over the world from Senseboxes
+- Weather data from OWA as supplement
+- Forecasting weather for the next 5 days
+- Analysis tools for weather data
+- Social sharing integration
+<br>
+<br>
+
+## Prequesites:
 
 - Node + NPM (nvm) 
     - https://www.npmjs.com/get-npm
@@ -16,17 +28,8 @@
 - To start this project run:
     - npm install
     - ionic serve
-
-### Development Tipps
-
-- use the IONIC CLI to generate new code
-    - https://ionicframework.com/docs/cli/generate/
-
-- lots of premade components like buttons and lists:
-    - https://ionicframework.com/docs/components/#overview
-
-- use IONIC CLI to test on devices
-    - e.g. ionic cordova run android --device
-
-- senseBox page has an example how to talk to the openSenseMap Api
-    - please use https://api.testing.opensensemap.org for testing
+    
+### Further Information:
+- [<b>re:</b>edu](https://reedu.de/)
+- [ifgi](https://www.uni-muenster.de/Geoinformatics/)
+- [senseBox](https://sensebox.de/)
