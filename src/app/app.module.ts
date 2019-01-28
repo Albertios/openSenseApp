@@ -20,12 +20,8 @@ import { RadarMapPageModule} from "../pages/radar-map/radar-map.module";
 import { HttpModule} from '@angular/http'; 
 import { DataProvider} from '../providers/api/data'; 
 
-
-
 import {IntroductionPageModule} from "../pages/introduction/introduction.module";
 import {IntroductionPage} from "../pages/introduction/introduction";
-
-
 
 
 @NgModule({
