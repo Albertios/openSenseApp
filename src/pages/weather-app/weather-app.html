@@ -37,11 +37,12 @@
     </ion-refresher>
 
 
+
     <div *ngIf="boxData; else elseBlock">
 
       <div *ngIf="tempSensor" class="item item-block item-md" ion-item="">
         <ion-label class="label label-md" *ngIf="weather">
-          <h2 *ngIf="tempSensor"><a (click)="showOWMAlert()">Temperature</a></h2>
+          <h2 *ngIf="tempSensor"><a style="color:#45beed" (click)="showOWMAlert()">Temperature</a></h2>
           <p *ngIf="tempSensor">{{weather.main.temp}} &nbsp; °C</p>
         </ion-label>
         <div *ngIf="tempSensor" class="button-effect"></div>
@@ -49,7 +50,7 @@
 
       <div class="item item-block item-md" ion-item="">
         <ion-label class="label label-md" *ngIf="weather">
-          <h2><a (click)="showOWMAlert()">Wind speed</a></h2>
+          <h2><a style="color:#45beed" (click)="showOWMAlert()">Wind speed</a></h2>
           <p>{{weather.wind.speed}} &nbsp; meter/sec</p>
         </ion-label>
         <div class="button-effect"></div>
@@ -64,7 +65,7 @@
 
       <div class="item item-block item-md" ion-item="">
         <ion-label class="label label-md" *ngIf="weather">
-          <h2><a (click)="showOWMAlert()">Sunrise &nbsp; & &nbsp; Sunset</a></h2>
+          <h2><a style="color:#45beed" (click)="showOWMAlert()">Sunrise &nbsp; & &nbsp; Sunset</a></h2>
           <p>{{sunrise}} &nbsp; & &nbsp; {{sunset}}</p>
         </ion-label>
         <div class="button-effect"></div>
