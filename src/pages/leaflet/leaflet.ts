@@ -1,16 +1,9 @@
-import {Component, ViewChild, ElementRef,} from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController, AlertController} from 'ionic-angular';
-import {ApiProvider} from '../../providers/api/api';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
+import { ApiProvider } from '../../providers/api/api';
 import leaflet from 'leaflet';
 import 'leaflet-search';
 import 'leaflet.locatecontrol';
-
-/**
- * Generated class for the LeafletPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -37,6 +30,7 @@ export class LeafletPage {
 
     this.currentSenseBox = this.api.getSenseboxData();
     this.currentSenseBox.toPromise().then(res => {
+      
       //initiate map
       this.map = leaflet.map('map', {zoomControl: false}).setView([res.currentLocation.coordinates[1], res.currentLocation.coordinates[0]], 13);
 
@@ -52,11 +46,6 @@ export class LeafletPage {
           setView: "once"
         }
       }).addTo(this.map);
-
-      // add event for location found of location finder
-      function onLocationFound(e) {
-        console.log("You were located!")
-      }
 
       // add event listener to map
       this.map.on('locationfound', this.getClosestSensebox, this);
@@ -92,7 +81,6 @@ export class LeafletPage {
         minDist = dist;
         closestSenseboxID = box._id;
       }
-
     });
 
     let closestSenseBox: any = this.api.getSenseboxDataFromId(closestSenseboxID);
@@ -101,8 +89,8 @@ export class LeafletPage {
       this.map.fitBounds([[res.currentLocation.coordinates[1], res.currentLocation.coordinates[0]], [e.latlng.lat, e.latlng.lng]]);
     });
     this.changeMarkerColor('black', closestSenseboxID);
-
   };
+
 
   // calculate distance of two points(sensebox, one's location or searched location)
   distance(latlng1, latlng2) {
@@ -179,7 +167,6 @@ export class LeafletPage {
           return '<p><b>Box: </b>' + layer.feature.properties.name + '<br><b>Selected sensebox </b></p>';
         } else if(layer.feature.properties.id === this.api.getGraphBoxId()){
           return '<p><b>Box: </b>' + layer.feature.properties.name + '<br><b>Selected sensebox for graph </b></p>';
-
         }
       });
 
@@ -194,14 +181,10 @@ export class LeafletPage {
         }
       });
       this.changeMarkerColor('blue', '');
-      //TODO: close popup after clicking 'set as preference'
-      //this.map.closePopup();
-
     });
   }
 
   // change the marker color of the selected sensebox
-  //TODO: onclick change color
   changeMarkerColor(color, id) {
     // set map view to the current selected sensebox && shows the current selected sensebox as a marker
     if (color === 'blue') {
@@ -254,7 +237,6 @@ let _createGeojsonFeaturen = (entry) => {
     box_date = box_date.replace("-", ".");
     box_date = box_date.split(".");
     box_date = box_date[2].concat(".".concat(box_date[1].concat(".".concat((box_date[0])))));
-
 
     let box_time = split_data[1];
     box_time = box_time.split(".");

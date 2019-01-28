@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
-import {ApiProvider} from '../../providers/api/api';
-import {IonicPage, NavController, NavParams, PopoverController} from 'ionic-angular';
-import {LeafletPage} from '../leaflet/leaflet';
-import {RadarMapPage} from '../radar-map/radar-map';
-import {SocialSharing} from '@ionic-native/social-sharing';
-import {WeatherProvider} from '../../providers/api/weather';
-import {AlertController} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { ApiProvider } from '../../providers/api/api';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { LeafletPage } from '../leaflet/leaflet';
+import { RadarMapPage } from '../radar-map/radar-map';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { WeatherProvider } from '../../providers/api/weather';
+import { AlertController } from 'ionic-angular';
 
 
 @IonicPage()
@@ -177,7 +177,7 @@ export class WeatherAppPage {
   showOWMAlert() {
     const alert = this.alertController.create({
       title: 'OpenWeatherMap',
-      subTitle: 'Your selected Sensebox does not have the sensor or the data is more than one day old. This displayed value is from openweathermap.org.',
+      subTitle: '<br>Your selected Sensebox does not have the sensor or the data is more than one day old.<br><br> The displayed value is taken from from openweathermap.org.',
       buttons: ['OK']
     });
     alert.present();

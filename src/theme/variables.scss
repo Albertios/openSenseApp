@@ -5,15 +5,12 @@
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
 
-
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
 $app-direction: ltr;
 
-
 @import "ionic.globals";
-
 
 // Shared Variables
 // --------------------------------------------------
@@ -21,9 +18,6 @@ $app-direction: ltr;
 // the Sass variables found in Ionic's source scss files.
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
-
-
-
 
 // Named Color Variables
 // --------------------------------------------------
@@ -33,39 +27,26 @@ $app-direction: ltr;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
-
-
 $colors: (
-  primary:    #4EAF47,
-  secondary:  #45beed,
-  yellow:     #fff200,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  primary: #4eaf47,
+  secondary: #45beed,
+  yellow: #fff200,
+  danger: #f53d3d,
+  light: #f4f4f4,
+  dark: #222
 );
-
-
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-
-
-
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
-
-
-
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
-
-
-
 
 // App Theme
 // --------------------------------------------------
@@ -76,7 +57,6 @@ $colors: (
 
 @import "ionic.theme.default";
 
-
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
@@ -84,24 +64,21 @@ $colors: (
 
 @import "ionic.ionicons";
 
-
 // Fonts
 // --------------------------------------------------
 
 @import "roboto";
 @import "noto-sans";
 
-
 // Styling the popver used for leaflet
-ion-popover{
-  ion-backdrop{
-  opacity: 0.5 !important;
+ion-popover {
+  ion-backdrop {
+    opacity: 0.5 !important;
   }
-  .popover-wrapper{
-      .popover-content{
-        width: 98.5%;
-        height: 90%;
-      }
+  .popover-wrapper {
+    .popover-content {
+      width: 98.5%;
+      height: 90%;
     }
+  }
 }
-

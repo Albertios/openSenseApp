@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -15,29 +14,29 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-
 .toolbar {
-    .toolbar-title {
-        color: white;
-    }
-    .button-inner {
-        color: white;
-    }
-    .toolbar-background {
-        background: map-get($colors, primary);
-    }
+  .toolbar-title {
+    color: white;
+  }
+  .button-inner {
+    color: white;
+  }
+  .toolbar-background {
+    background: map-get($colors, primary);
+  }
 }
 
-.tab-md, .tab-button-icon{
-    color: #ccc;
-}  
+.tab-md,
+.tab-button-icon {
+  color: #ccc;
+}
 
 .list-item {
-    color: #ffffff;
-    margin-bottom: 10px;
-    font-size: 2rem;
- } 
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
 
- .leaflet-control-locate a {
-    padding: 0 0 0 0;
+.leaflet-control-locate a {
+  padding: 0 0 0 0;
 }

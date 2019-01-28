@@ -1,14 +1,6 @@
 import { Component,ViewChild } from '@angular/core';
-import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
-import {HomePage} from "../home/home";
-
-
-/**
- * Generated class for the IntroductionPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { HomePage } from "../home/home";
 
 @IonicPage()
 @Component({
@@ -26,20 +18,22 @@ export class IntroductionPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad IntroductionPage');
   }
+
   skip() {
     this.navCtrl.setRoot(HomePage); //.push(HomePage);
   }
+
   slideChanged() {
     if (this.slides.isEnd())
       this.skipMsg = "Alright, I got it";
   }
+
   slideMoved() {
     if (this.slides.getActiveIndex() >= this.slides.getPreviousIndex())
       this.state = 'rightSwipe';
     else
       this.state = 'leftSwipe';
   }
-
 }
 
 

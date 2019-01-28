@@ -1,37 +1,33 @@
-page-about{
-
-p{
+page-about {
+  p {
     color: map-get($colors, primary);
-}
+  }
 
-ul {
+  ul {
     margin-top: 2.2em;
     list-style: none;
     padding: 0;
-}
+  }
 
-.logo{
-    font-size: 200%
-}
+  .logo {
+    font-size: 200%;
+  }
 
-#git_link{
+  #git_link {
     text-decoration: none;
-}
+  }
 
-.credit{
+  .credit {
     text-decoration: none;
-    font-size: 60%
-}
+    font-size: 60%;
+  }
 
-.further_link{
+  .further_link {
     text-decoration: none;
-    font-size: 60%;    
+    font-size: 60%;
+  }
+
+  .link_logo {
+    margin: 12px auto !important;
+  }
 }
-
-.link_logo{
-    margin:12px auto !important;
-}
-
-}
-
-
