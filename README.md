@@ -14,7 +14,6 @@ This app was built during the Winterterm 2018/2019 for the studyproject 'SIL: Ap
 - Analysis tools for weather data
 - Social sharing integration
 <br>
-<br>
 
 ## Prequesites:
 
