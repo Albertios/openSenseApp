@@ -19,7 +19,6 @@ Use and produce [<b>#OPENDATA</b>](https://twitter.com/search?q=%23opendata&src=
 - Forecasting weather for the next 5 days
 - Analysis tools for weather data
 - Social sharing integration
-<br>
 
 ## Prequesites:
 
