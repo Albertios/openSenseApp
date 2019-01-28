@@ -4,12 +4,6 @@ import { ApiProvider } from '../../providers/api/api';
 import { LeafletPage } from '../leaflet/leaflet';
 import Chart from 'chart.js/dist/Chart.js';
 
-/**
- * Generated class for the LeafletPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -57,7 +51,7 @@ export class GraphsPage {
   }
 
   checkForSenseboxData() {
-    if (this.box) { //check if this works!!
+    if (this.box) {
       if (this.api.getGraphBoxId() === '') {
         let alert = this.alertCtrl.create({
           title: 'No Box selected',
@@ -189,7 +183,8 @@ export class GraphsPage {
           yAxes: [{
             scaleLabel: {
               display: true,
-              labelString: this.unit},
+              labelString: this.unit
+            },
             stacked: true,
             gridLines: {
               display: true,

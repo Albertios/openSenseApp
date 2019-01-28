@@ -1,5 +1,6 @@
 <ion-header>
   <ion-navbar>
+
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -22,22 +23,27 @@
       <button ion-button (click)="presentPopover($event)" icon-only>
         <ion-icon name="locate"></ion-icon>
       </button>
+
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+
   <ion-item>
     <ion-label>Compare with another Box</ion-label>
     <ion-checkbox [(ngModel)]="box" (ionChange)="checkForSenseboxData()"></ion-checkbox>
   </ion-item>
+
   <ion-item>
     <ion-label>Sensor</ion-label>
     <ion-select id="dropDown" (ionChange)="this.populateChart(selectField.value);" #selectField>
       <ion-option *ngFor="let sensor of sensorData" value="{{sensor.value}}">{{sensor.title}}</ion-option>
     </ion-select>
+
   </ion-item>
   <div style="position: relative; margin: auto; height:70vh; width:80vw">
     <canvas id="boxChart"></canvas>
   </div>
+  
 </ion-content>
