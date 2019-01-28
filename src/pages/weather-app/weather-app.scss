@@ -1,8 +1,11 @@
+
+
 page-weather-app {
   #rainviewerMap{
     width:auto;
     height: 200px;
   }
+
   ion-card {
     margin-bottom: 2em;
   }
@@ -19,6 +22,10 @@ page-weather-app {
   }
 
   .card-background-page {
+/*    background:url("../../assets/imgs/gif.gif") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;*/
 
     ion-card {
       position: relative;
@@ -27,7 +34,7 @@ page-weather-app {
 
     .card-title {
       position: absolute;
-      top: 36%;
+      top: 12%;
       font-size: 2.0em;
       width: 100%;
       font-weight: bold;
@@ -42,6 +49,15 @@ page-weather-app {
       width: 10%;
       color: black;
     }
+
+   .lastMeasurement{
+/*      position: absolute;
+      top: 22em;
+      right: 2%;*/
+      font-weight: bold;
+      color: white;
+    }
+
 
   }
 

@@ -170,19 +170,23 @@ export class LeafletPage {
       //popup template
       this.boxLayer.bindPopup((layer) => {
         //check if the popup that opens is from the selected sensebox
-        if (layer.feature.properties.id != this.api.getBoxId()) {
-          return leaflet.Util.template('<p><b>Box : </b>{name}<br>Last Measured on {lastMeasuredAt}<br><button id="id{id}" name="pref" data-id={id} ' +
+
+        if (layer.feature.properties.id != this.api.getBoxId() && layer.feature.properties.id != this.api.getGraphBoxId()) {
+          return leaflet.Util.template('<p><b>Box Name : </b>{name}<br><button id="id{id}" name="pref" data-id={id} ' +
             'value="prf">Set as preference</button><button id="graphId{id}" name="pref" data-id={id} value="prf">' +
             'Save for graph</button></p>', layer.feature.properties);
-        } else {
-          return '<p><b>Box: </b>' + layer.feature.properties.name + '<br>Last Measured on ' + layer.feature.properties.lastMeasuredAt+'<br><b>Selected sensebox </b></p>';
+        } else if (layer.feature.properties.id === this.api.getBoxId()){
+          return '<p><b>Box: </b>' + layer.feature.properties.name + '<br><b>Selected sensebox </b></p>';
+        } else if(layer.feature.properties.id === this.api.getGraphBoxId()){
+          return '<p><b>Box: </b>' + layer.feature.properties.name + '<br><b>Selected sensebox for graph </b></p>';
+
         }
       });
 
       // event for button in popup
       this.boxLayer.on('popupopen', (e) => {
         //check if the popup that opens is from the selected sensebox
-        if (e.layer.feature.properties.id != this.api.getBoxId()) {
+        if (e.layer.feature.properties.id != this.api.getBoxId() && e.layer.feature.properties.id != this.api.getGraphBoxId()) {
           this.elementRef.nativeElement.querySelector('#id' + e.popup._source.feature.properties.id)
             .addEventListener('click', this.safeBoxId.bind(this));
           this.elementRef.nativeElement.querySelector('#graphId' + e.popup._source.feature.properties.id)
