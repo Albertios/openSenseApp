@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
-import {ApiProvider} from '../../providers/api/api';
-import {IonicPage, NavController, NavParams, PopoverController} from 'ionic-angular';
-import {LeafletPage} from '../leaflet/leaflet';
-import {RadarMapPage} from '../radar-map/radar-map';
-import {SocialSharing} from '@ionic-native/social-sharing';
-import {WeatherProvider} from '../../providers/api/weather';
-import {AlertController} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { ApiProvider } from '../../providers/api/api';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { LeafletPage } from '../leaflet/leaflet';
+import { RadarMapPage } from '../radar-map/radar-map';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { WeatherProvider } from '../../providers/api/weather';
+import { AlertController } from 'ionic-angular';
 
 
 @IonicPage()

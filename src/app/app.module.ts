@@ -14,14 +14,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { LeafletPage } from '../pages/leaflet/leaflet';
 import { LeafletPageModule } from '../pages/leaflet/leaflet.module';
 
-import { RadarMapPage} from "../pages/radar-map/radar-map";
-import { RadarMapPageModule} from "../pages/radar-map/radar-map.module";
+import { RadarMapPage } from "../pages/radar-map/radar-map";
+import { RadarMapPageModule } from "../pages/radar-map/radar-map.module";
 
-import { HttpModule} from '@angular/http'; 
-import { DataProvider} from '../providers/api/data'; 
+import { HttpModule } from '@angular/http'; 
+import { DataProvider } from '../providers/api/data'; 
 
-import {IntroductionPageModule} from "../pages/introduction/introduction.module";
-import {IntroductionPage} from "../pages/introduction/introduction";
+import { IntroductionPageModule } from "../pages/introduction/introduction.module";
+import { IntroductionPage } from "../pages/introduction/introduction";
 
 
 @NgModule({

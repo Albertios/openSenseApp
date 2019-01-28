@@ -3,7 +3,7 @@ import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular
 import { map } from 'rxjs/operators';
 import { Http, Headers } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
-import {ApiProvider} from '../../providers/api/api';
+import { ApiProvider } from '../../providers/api/api';
 
 /**
  * Generated class for the ForecastPage page.

@@ -1,6 +1,6 @@
-import {Component, ViewChild, ElementRef,} from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController, AlertController} from 'ionic-angular';
-import {ApiProvider} from '../../providers/api/api';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
+import { ApiProvider } from '../../providers/api/api';
 import leaflet from 'leaflet';
 import 'leaflet-search';
 import 'leaflet.locatecontrol';
