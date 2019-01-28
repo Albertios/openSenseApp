@@ -1,10 +1,9 @@
-page-info p{
-    color: map-get($colors, primary);
-}
+page-info p {
+  color: map-get($colors, primary);
 
-ul {
+  ul {
     margin-top: 2.2em;
     list-style: none;
     padding: 0;
-
+  }
 }
