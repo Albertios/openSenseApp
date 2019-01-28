@@ -3,6 +3,12 @@
 WeatherBox is a modern, responsive weather app, providing you with the most local of weather data and the tools to analyse it.
 This app was built during the Winterterm 2018/2019 for the studyproject 'SIL: App Development for the OpenSenseMap'.
 <br>
+
+## Goals:
+
+Promote [<b>#CITIZENSCIENCE</b>](https://twitter.com/hashtag/citizenscience?lang=en) <br>
+Improve [<b>#DIGITALLEARNING</b>](https://twitter.com/search?q=%23DIGITALLEARNING&src=typd&lang=en) <br>
+Use and produce [<b>#OPENDATA</b>](https://twitter.com/search?q=%23opendata&src=typd&lang=en)
 <br>
 
 ## Features:
