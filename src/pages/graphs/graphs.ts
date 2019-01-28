@@ -146,7 +146,7 @@ export class GraphsPage {
           let splittedBoxArray = this.splitIntoDaysArray(sensorsArray);
           let chartBoxData: any = this.getMinAndMax(splittedBoxArray[0]);
           this.sensorChart.data.datasets.push({
-            label: "Data in " + this.unit + " of compared Box",
+            label: "Compared Box",
             data: chartBoxData,
             backgroundColor: [
               'rgba(1, 177, 215, 0.5)'
@@ -172,7 +172,7 @@ export class GraphsPage {
       data: {
         labels: chartLabel,
         datasets: [{
-          label: "Data in " + this.unit + " of prefered box",
+          label: "Preferred Box",
           data: chartData,
           backgroundColor: [
             'rgba(78, 175, 71, 0.5)'
