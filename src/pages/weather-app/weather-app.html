@@ -20,41 +20,69 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content class="card-background-page">
   <ion-card *ngIf="boxData">
 
-    <img src="../../assets/imgs/raisingSun.jpg"/>
-    
-    <div class="card-title">{{boxData.name}} 
+    <img src={{weatherConditionStringImagePath}}/>
+
+    <div class="card-title">{{boxData.name}}
       <br>
-      {{boxData.date}}
-      <br>
-      {{boxData.time}}
+
+      <p class="lastMeasurement">{{boxData.date}}
+        <br>
+        {{boxData.time}}
+
+      </p>
     </div>
     <ion-refresher (ionRefresh)="doRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
 
+
+    <div *ngIf="boxData; else elseBlock">
+
+      <div *ngIf="tempSensor" class="item item-block item-md" ion-item="">
+        <ion-label class="label label-md" *ngIf="weather">
+          <h2 *ngIf="tempSensor">Temperature from <a href="https://openweathermap.org/" id="omw_link">OWM</a></h2>
+          <p *ngIf="tempSensor">{{weather.main.temp}} &nbsp; °C</p>
+        </ion-label>
+        <div *ngIf="tempSensor" class="button-effect"></div>
+      </div>
+
+      <div class="item item-block item-md" ion-item="">
+        <ion-label class="label label-md" *ngIf="weather">
+          <h2>Wind speed</h2>
+          <p>{{weather.wind.speed}} &nbsp; meter/sec</p>
+        </ion-label>
+        <div class="button-effect"></div>
+      </div>
+
+      <ion-list>
+        <div ion-item *ngFor="let sensor of boxData.sensors">
+          <h2>{{sensor.title}}</h2>
+          <p *ngIf="sensor.lastMeasurement!=undefined">{{sensor.lastMeasurement.value}} &nbsp; {{sensor.unit}}</p>
+        </div>
+      </ion-list>
+
+      <div class="item item-block item-md" ion-item="">
+        <ion-label class="label label-md" *ngIf="weather">
+          <h2>Sunrise &nbsp; & &nbsp; Sunset</h2>
+          <p>{{sunrise}} &nbsp; & &nbsp; {{sunset}}</p>
+        </ion-label>
+        <div class="button-effect"></div>
+      </div>
+    </div>
+
   </ion-card>
 
-  <div *ngIf="boxData; else elseBlock">
-    <ion-list>
-      <div ion-item *ngFor="let sensor of boxData.sensors">
-        <h2>{{sensor.title}}</h2>
-        <p *ngIf="sensor.lastMeasurement!=undefined">{{sensor.lastMeasurement.value}} &nbsp; {{sensor.unit}}</p>
-      </div>
-    </ion-list>
-  </div>
+  <!-- This block should be executed if no weather data is provided by the SenseBox
+      Weather data is searched for using weather-app.ts: getReplacementData
+      replacementData is provided in variable weather and can be used as:
 
-    <!-- This block should be executed if no weather data is provided by the SenseBox
-        Weather data is searched for using weather-app.ts: getReplacementData
-        replacementData is provided in variable weather and can be used as:
+      <ion-item>
+          <strong> temp:</strong> {{weather.list["0"].main.temp}}
+        </ion-item>
 
-        <ion-item>
-            <strong> temp:</strong> {{weather.list["0"].main.temp}}
-          </ion-item>
-
-    -->
-
+  -->
 </ion-content>
+
