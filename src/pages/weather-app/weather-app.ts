@@ -5,6 +5,7 @@ import {LeafletPage} from '../leaflet/leaflet';
 import {RadarMapPage} from '../radar-map/radar-map';
 import {SocialSharing} from '@ionic-native/social-sharing';
 import {WeatherProvider} from '../../providers/api/weather';
+import {AlertController} from 'ionic-angular';
 
 
 @IonicPage()
@@ -26,7 +27,9 @@ export class WeatherAppPage {
   sunset: any;
   weatherConditionStringImagePath: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private api: ApiProvider, private socialSharing: SocialSharing, public WeatherProvider: WeatherProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController,
+              private api: ApiProvider, private socialSharing: SocialSharing, public WeatherProvider: WeatherProvider,
+              public alertController: AlertController) {
   }
 
   share() {
@@ -140,7 +143,7 @@ export class WeatherAppPage {
 
   replaceData() {
 
-    //let currDate: any = new Date().toLocaleDateString();
+    //get current date and convert it to ==> dd:mm:yyyy
     let day: any = new Date().getDate();
     let month: any = new Date().getMonth();
     let year: any = new Date().getFullYear();
@@ -160,15 +163,23 @@ export class WeatherAppPage {
 
     let currDate = day + "." + month + "." + year;
 
+    // go through sensors and look for sensor name "Temperatur" and last update is today ==> oms temp will not shown on
+    // landing page otherwise the temperature of owm completes the list
     for (let i = 0; i < this.boxData.sensors.length; i++) {
       if (this.boxData.sensors[i].title === "Temperatur" && this.boxData.date === currDate) {
         this.tempSensor = false;
       } else if (this.tempSensor != false) {
         this.tempSensor = true;
-
       }
     }
   }
 
-
+  showOWMAlert() {
+    const alert = this.alertController.create({
+      title: 'OpenWeatherMap',
+      subTitle: 'Your selected Sensebox does not have the sensor or the data is more than one day old. This displayed value is from openweathermap.org.',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 }

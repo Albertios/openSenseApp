@@ -27,11 +27,9 @@
 
     <div class="card-title">{{boxData.name}}
       <br>
-
       <p class="lastMeasurement">{{boxData.date}}
         <br>
         {{boxData.time}}
-
       </p>
     </div>
     <ion-refresher (ionRefresh)="doRefresh($event)">
@@ -43,7 +41,7 @@
 
       <div *ngIf="tempSensor" class="item item-block item-md" ion-item="">
         <ion-label class="label label-md" *ngIf="weather">
-          <h2 *ngIf="tempSensor">Temperature from <a href="https://openweathermap.org/" id="omw_link">OWM</a></h2>
+          <h2 *ngIf="tempSensor"><a (click)="showOWMAlert()">Temperature</a></h2>
           <p *ngIf="tempSensor">{{weather.main.temp}} &nbsp; °C</p>
         </ion-label>
         <div *ngIf="tempSensor" class="button-effect"></div>
@@ -51,7 +49,7 @@
 
       <div class="item item-block item-md" ion-item="">
         <ion-label class="label label-md" *ngIf="weather">
-          <h2>Wind speed</h2>
+          <h2><a (click)="showOWMAlert()">Wind speed</a></h2>
           <p>{{weather.wind.speed}} &nbsp; meter/sec</p>
         </ion-label>
         <div class="button-effect"></div>
@@ -66,7 +64,7 @@
 
       <div class="item item-block item-md" ion-item="">
         <ion-label class="label label-md" *ngIf="weather">
-          <h2>Sunrise &nbsp; & &nbsp; Sunset</h2>
+          <h2><a (click)="showOWMAlert()">Sunrise &nbsp; & &nbsp; Sunset</a></h2>
           <p>{{sunrise}} &nbsp; & &nbsp; {{sunset}}</p>
         </ion-label>
         <div class="button-effect"></div>
@@ -74,15 +72,5 @@
     </div>
 
   </ion-card>
-
-  <!-- This block should be executed if no weather data is provided by the SenseBox
-      Weather data is searched for using weather-app.ts: getReplacementData
-      replacementData is provided in variable weather and can be used as:
-
-      <ion-item>
-          <strong> temp:</strong> {{weather.list["0"].main.temp}}
-        </ion-item>
-
-  -->
 </ion-content>
 
