@@ -64,7 +64,7 @@ export class LeafletPage {
       //add search and event function
       this.map.addControl(new leaflet.Control.Search({
         url: 'http://nominatim.openstreetmap.org/search?format=json&q={s}',
-        position: "topright",
+        position: "topleft",
         jsonpParam: 'json_callback',
         propertyName: 'display_name',
         propertyLoc: ['lat', 'lon'],
