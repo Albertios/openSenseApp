@@ -170,6 +170,7 @@ export class LeafletPage {
       //popup template
       this.boxLayer.bindPopup((layer) => {
         //check if the popup that opens is from the selected sensebox
+
         if (layer.feature.properties.id != this.api.getBoxId() && layer.feature.properties.id != this.api.getGraphBoxId()) {
           return leaflet.Util.template('<p><b>Box Name : </b>{name}<br><button id="id{id}" name="pref" data-id={id} ' +
             'value="prf">Set as preference</button><button id="graphId{id}" name="pref" data-id={id} value="prf">' +
@@ -178,6 +179,7 @@ export class LeafletPage {
           return '<p><b>Box: </b>' + layer.feature.properties.name + '<br><b>Selected sensebox </b></p>';
         } else if(layer.feature.properties.id === this.api.getGraphBoxId()){
           return '<p><b>Box: </b>' + layer.feature.properties.name + '<br><b>Selected sensebox for graph </b></p>';
+
         }
       });
 
@@ -243,13 +245,30 @@ export class LeafletPage {
 
 // function to create feature from json
 let _createGeojsonFeaturen = (entry) => {
+  if(entry.updatedAt){
+    let time_data = (entry.updatedAt);
+    let split_data = time_data.split("T");
 
+    let box_date = split_data[0];
+    box_date = box_date.replace("-", ".");
+    box_date = box_date.replace("-", ".");
+    box_date = box_date.split(".");
+    box_date = box_date[2].concat(".".concat(box_date[1].concat(".".concat((box_date[0])))));
+
+
+    let box_time = split_data[1];
+    box_time = box_time.split(".");
+    box_time = box_time[0];
+
+    entry.updatedAt = box_date +" at " + box_time;
+  }
   let geojsonFeature = {
     "type": "Feature",
     "properties": {
       "name": entry.name,
       "id": entry._id,
       "entry": entry,
+      "lastMeasuredAt": entry.updatedAt,
       "popupContent": 'GoodBox!'
     },
 
