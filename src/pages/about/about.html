@@ -30,7 +30,7 @@
     <ion-item class="logo">
       <br>
       <div style="font-size: 80%">In Cooperation with: </div>
-      
+
       <a href="https://reedu.de/" class="further_link">
         <img class="link_logo" src="../../assets/icon/logo_red_reedu.svg" style="height:50px; width:50px">
         <b>re:</b>edu</a>
@@ -40,12 +40,15 @@
         <img class="link_logo" src="../../assets/icon/sensebox_logo.svg" style="height:50px; width:50px">
         senseBox</a>
       <br>
-      
+
       <a href="https://www.uni-muenster.de/Geoinformatics/" class="further_link">
         <img class="link_logo" src="../../assets/icon/logo-ifgi-text-de.png" style="height:60px; width:50px">
         Institute for Geoinformatics</a>
       <br>
     </ion-item>
 
+    <button class="aboutlist" clear ion-item *ngFor="let aboutlist of  aboutlists" (click)="itemClicked(aboutlist)">
+      {{aboutlist.itemName}}
+    </button>
   </ion-list>
 </ion-content>
