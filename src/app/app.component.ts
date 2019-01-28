@@ -20,7 +20,7 @@ export class openSenseApp {
 
   pages: Array<{ title: string, component: any }> = [
 
-    { title: 'WeatherApp', component: 'WeatherAppPage' },
+    { title: 'WeatherBox', component: 'WeatherAppPage' },
   ];
   weatherPages: Array<{ title: string, component: any }> = [
     { title:'Home', component: "WeatherAppPage"},
