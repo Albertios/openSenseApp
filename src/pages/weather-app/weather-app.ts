@@ -177,7 +177,7 @@ export class WeatherAppPage {
   showOWMAlert() {
     const alert = this.alertController.create({
       title: 'OpenWeatherMap',
-      subTitle: 'Your selected Sensebox does not have the sensor or the data is more than one day old. This displayed value is from openweathermap.org.',
+      subTitle: '<br>Your selected Sensebox does not have the sensor or the data is more than one day old.<br><br> The displayed value is taken from from openweathermap.org.',
       buttons: ['OK']
     });
     alert.present();
